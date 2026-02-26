@@ -12,7 +12,7 @@ pipeline {
         stage('Compilación') {
             steps {
                 echo 'Compilando el proyecto...'
-                sh 'gcc -o app app.c'
+                sh 'gcc -c app.c'
             }
         }
 
@@ -20,7 +20,6 @@ pipeline {
             steps {
                 echo 'Realizando Pruebas Unitarias...'
                 sh '''
-                    gcc -c app.c
                     gcc -o test_app test_app.c app.o
                     ./test_app
                 '''
