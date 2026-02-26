@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
 
         stage('Clonación') {
@@ -17,11 +16,14 @@ pipeline {
         }
 
         stage('Tests') {
-            steps {
-                echo 'Realizando Pruebas Unitarias...'
-                sh 'gcc -o test_app test_app.c && ./test_app'
-            }
-        }
+    steps {
+        echo 'Realizando Pruebas Unitarias...'
+        sh '''
+            gcc -o test_app test_app.c app.c
+            ./test_app
+        '''
+    }
+}
 
         stage('Despliegue') {
             steps {
